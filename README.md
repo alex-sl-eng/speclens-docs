@@ -1,6 +1,6 @@
 # SpecLens
 
-A local-first VS Code and Kiro extension that turns your **spec-driven development** artifacts into a live, read-only reactive dashboard. Designed for **agentic AI workflows** using [Kiro Spec](https://kiro.dev), **AI-DLC**, and **OpenSpec** — SpecLens gives you real-time visibility into your requirements, task graph, and test traceability without leaving your editor.
+A local-first VS Code and Kiro extension that turns your **spec-driven development** artifacts into a live, read-only reactive dashboard. Designed for **agentic AI workflows** using [Kiro Spec](https://kiro.dev), [AI-DLC](https://github.com/awslabs/aidlc-workflows), and [OpenSpec](https://openspec.dev/) — SpecLens gives you real-time visibility into your requirements, task graph, and test traceability without leaving your editor.
 
 No server, no telemetry, no sync — everything stays in your workspace.
 
