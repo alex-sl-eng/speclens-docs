@@ -1,6 +1,6 @@
 # SpecLens
 
-A local-first VS Code and Kiro extension that turns your **spec-driven development** artifacts into a live, read-only reactive dashboard. Designed for **agentic AI workflows** using [Kiro Spec](https://kiro.dev), [AI-DLC](https://github.com/awslabs/aidlc-workflows), and [OpenSpec](https://openspec.dev/) — SpecLens gives you real-time visibility into your requirements, task graph, and test traceability without leaving your editor.
+A local-first VS Code and Kiro extension that turns your **spec-driven development** artifacts into a live, read-only reactive dashboard. Designed for **agentic AI workflows** using [Kiro Spec](https://kiro.dev), [AI-DLC](https://github.com/awslabs/aidlc-workflows), [OpenSpec](https://openspec.dev/), and [GitHub Speckit](https://github.com/awslabs/github-spec-kit) — SpecLens gives you real-time visibility into your requirements, task graph, and test traceability without leaving your editor.
 
 No server, no telemetry, no sync — everything stays in your workspace.
 
@@ -17,6 +17,7 @@ Tracks the lifecycle phases declared by your framework:
 - **[Kiro Spec](https://kiro.dev)** — Requirements → Design → Tasks
 - **[AI-DLC](https://github.com/awslabs/aidlc-workflows)** — Inception → Construction → Operations
 - **[OpenSpec](https://openspec.dev/)** — Proposal → Design → Specs → Tasks
+- **[GitHub Speckit](https://github.com/awslabs/github-spec-kit)** — Feature Definition → Planning → Task Generation → Implementation
 
 The active phase is highlighted. Completed phases show their last-modified timestamp. Each phase box expands to show a sub-stage checklist (e.g. the individual [AI-DLC](https://github.com/awslabs/aidlc-workflows) stages within Inception or Construction), with a completion count summary toggle.
 
@@ -47,7 +48,7 @@ SpecLens automatically saves a snapshot every time something meaningful changes 
 
 ## Why SpecLens?
 
-If you use **[Kiro Spec](https://kiro.dev)**, **[AI-DLC](https://github.com/awslabs/aidlc-workflows)**, or **[OpenSpec](https://openspec.dev/)** to drive development with AI agents, SpecLens gives you situational awareness without disrupting your flow:
+If you use **[Kiro Spec](https://kiro.dev)**, **[AI-DLC](https://github.com/awslabs/aidlc-workflows)**, **[OpenSpec](https://openspec.dev/)**, or **[GitHub Speckit](https://github.com/awslabs/github-spec-kit)** to drive development with AI agents, SpecLens gives you situational awareness without disrupting your flow:
 
 - **Requirements → tasks, always in sync** — see exactly what's done, what's running, and what's blocked
 - **Test linkage** — connect your JUnit or Vitest results back to the requirements they verify
@@ -65,6 +66,7 @@ SpecLens supports the three main **AI-driven spec workflows** used with Kiro and
 | **[Kiro Spec](https://kiro.dev)** | Workspace contains `.kiro/specs/<feature>/` with `requirements.md`, `design.md`, `tasks.md`   |
 | **[AI-DLC](https://github.com/awslabs/aidlc-workflows)**    | Workspace contains `aidlc-docs/aidlc-state.md`                                                |
 | **[OpenSpec](https://openspec.dev/)**  | Workspace contains `openspec/config.yaml`; each `openspec/changes/<name>/` is a separate spec |
+| **[GitHub Speckit](https://github.com/awslabs/github-spec-kit)** | Workspace contains `.specify/` directory (detected via `config.yml` or `extensions.yml`); each `specs/<name>/` with `spec.md` is a separate spec |
 
 SpecLens activates automatically when it detects any of these structures. Multiple frameworks can coexist in the same workspace.
 
