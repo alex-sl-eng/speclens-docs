@@ -22,7 +22,7 @@ Tracks the lifecycle phases declared by your framework:
 The active phase is highlighted. Completed phases show their last-modified timestamp. Each phase box expands to show a sub-stage checklist (e.g. the individual [AI-DLC](https://github.com/awslabs/aidlc-workflows) stages within Inception or Construction), with a completion count summary toggle.
 
 ### Task Graph
-A top-down **dependency graph** of tasks grouped into topological waves (dependency layers). Tasks are colour-coded by state — pending, running, or completed. Click any node to jump directly to that line in the source file. The graph viewport is resizable by dragging the bottom handle.
+A top-down **dependency graph** of tasks grouped into topological waves (dependency layers). Tasks are colour-coded by state — pending or completed. Click any node to jump directly to that line in the source file. The graph viewport is resizable by dragging the bottom handle.
 
 Selecting a requirement in the traceability sidebar filters the graph down to only the tasks linked to that requirement. A banner shows the active filter with a one-click clear button.
 
@@ -50,7 +50,7 @@ SpecLens automatically saves a snapshot every time something meaningful changes 
 
 If you use **[Kiro Spec](https://kiro.dev)**, **[AI-DLC](https://github.com/awslabs/aidlc-workflows)**, **[OpenSpec](https://openspec.dev/)**, or **[GitHub Speckit](https://github.com/awslabs/github-spec-kit)** to drive development with AI agents, SpecLens gives you situational awareness without disrupting your flow:
 
-- **Requirements → tasks, always in sync** — see exactly what's done, what's running, and what's blocked
+- **Requirements → tasks, always in sync** — see exactly what's done and what's still pending
 - **Test linkage** — connect your JUnit or Vitest results back to the requirements they verify
 - **Zero config to get started** — auto-detects your framework from workspace structure
 - **Fully offline** — no cloud, no accounts, no data leaves your machine
@@ -140,20 +140,28 @@ All settings are workspace-folder scoped.
 | Setting | Type | Default | Description |
 |---|---|---|---|
 | `speclens.testReportPath` | `string` | — | Path to a JUnit XML or JSON test report file (relative to workspace folder, or absolute). Leave unset for linkage-only mode. |
-| `speclens.running.recencyWindowSeconds` | `number` | `45` | Seconds within which a confirmed-linked file modification marks a task as *running*. Range: 1–3600. |
+| `speclens.running.recencyWindowSeconds` | `number` | `45` | Reserved for future use. Range: 1–3600. |
 | `speclens.retention.maxDays` | `number` | `30` | Maximum days to retain snapshots. Range: 1–3650. |
 | `speclens.retention.maxSizeMB` | `number` | `25` | Maximum snapshot store size in MB. Range: 1–1024. |
-| `speclens.frameworks` | `object` | `{}` | Per-folder map to override framework detection. Keys are workspace folder URIs; values are `"auto"`, `"kiro-spec"`, `"aidlc"`, or `"openspec"`. Folders absent from the map default to `"auto"`. |
+| `speclens.candidateLinks.enabled` | `boolean` | `true` | When enabled, SpecLens infers file-to-task links by name and path similarity. Disable if you only want explicitly declared links. |
+| `speclens.frameworks` | `object` | `{}` | Per-folder map to override framework detection. Keys are workspace folder URIs; values are `"auto"`, `"kiro-spec"`, `"aidlc"`, `"openspec"`, or `"github-speckit"`. Folders absent from the map use `"auto"` (presence-based detection). |
 
 ### Framework override example
+
+Use this when SpecLens detects the wrong framework for a folder, or when you
+want to lock a folder to a specific framework regardless of its directory
+structure.
 
 ```jsonc
 {
   "speclens.frameworks": {
+    // Key: workspace folder URI  Value: "auto" | "kiro-spec" | "aidlc" | "openspec" | "github-speckit"
     "file:///Users/you/workspace/my-project": "kiro-spec"
   }
 }
 ```
+
+Folders not listed in the map are auto-detected from their directory structure.
 
 ---
 
