@@ -39,6 +39,7 @@ A collapsible terminal-style panel pinned to the bottom of the left column. Show
 ### Snapshot History
 SpecLens automatically saves a snapshot every time something meaningful changes (task states, verification status). The History surface (opened via the `SpecLens: View History` command) lets you:
 - Browse and filter snapshots by spec, repo, framework, and date range
+- View per-snapshot metrics: task completion, requirement verification coverage, active pipeline phase, and parse health — with delta indicators showing progress between consecutive snapshots
 - Track progress over time as your AI agent completes tasks
 - Export a filtered snapshot set to a JSON file (with optional path redaction)
 - Import a previously exported snapshot file
@@ -59,11 +60,11 @@ If you use **[Kiro Spec](https://kiro.dev)**, **[AI-DLC](https://github.com/awsl
 
 ## Supported frameworks
 
-SpecLens supports the three main **AI-driven spec workflows** used with Kiro and other agentic tools:
+SpecLens supports the four main **AI-driven spec workflows** used with Kiro and other agentic tools:
 
 | Framework     | Detection                                                                                     |
 | ---------------| -----------------------------------------------------------------------------------------------|
-| **[Kiro Spec](https://kiro.dev)** | Workspace contains `.kiro/specs/<feature>/` with `requirements.md`, `design.md`, `tasks.md`   |
+| **[Kiro Spec](https://kiro.dev)** | Workspace contains one or more `.kiro/specs/<feature>/` directories |
 | **[AI-DLC](https://github.com/awslabs/aidlc-workflows)**    | Workspace contains `aidlc-docs/aidlc-state.md`                                                |
 | **[OpenSpec](https://openspec.dev/)**  | Workspace contains `openspec/config.yaml`; each `openspec/changes/<name>/` is a separate spec |
 | **[GitHub Speckit](https://github.com/awslabs/github-spec-kit)** | Workspace contains `.specify/` directory (detected via `config.yml` or `extensions.yml`); each `specs/<name>/` with `spec.md` is a separate spec |
