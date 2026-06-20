@@ -103,6 +103,7 @@ SpecLens activates automatically when your workspace contains a recognised spec 
 | **SpecLens: Open Dashboard** | Opens or reveals the live dashboard panel |
 | **SpecLens: View History** | Opens the snapshot history surface in a separate panel |
 | **SpecLens: Select Spec** | Quick-pick to switch the active spec (when the workspace has multiple) |
+| **SpecLens: Open Settings** | Opens VS Code Settings filtered to all SpecLens configuration options |
 
 ---
 
@@ -136,7 +137,9 @@ SpecLens **never runs tests** — it only reads an existing report file. If the 
 
 ## Settings
 
-All settings are workspace-folder scoped.
+All settings are workspace-folder scoped. You can open them directly via:
+- **Command Palette** → `SpecLens: Open Settings`
+- The **⚙** button in the dashboard header
 
 | Setting | Type | Default | Description |
 |---|---|---|---|
