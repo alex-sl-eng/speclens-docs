@@ -2,7 +2,7 @@
 
 A local-first VS Code and Kiro extension that turns your **spec-driven development** artifacts into a live, read-only reactive dashboard. Designed for **agentic AI workflows** using [Kiro Spec](https://kiro.dev), [AI-DLC](https://github.com/awslabs/aidlc-workflows), [OpenSpec](https://openspec.dev/), and [GitHub Speckit](https://github.com/awslabs/github-spec-kit) — SpecLens gives you real-time visibility into your requirements, task graph, and test traceability without leaving your editor.
 
-No server, no telemetry, no sync — everything stays in your workspace.
+No server, no sync — everything stays in your workspace. Only minimal, anonymous usage telemetry is sent (opt-out available), and no spec content, code, or file paths ever leave your machine.
 
 ![SpecLens Dashboard](https://raw.githubusercontent.com/alex-sl-eng/speclens-docs/main/images/preview.png)
 
@@ -32,9 +32,6 @@ A collapsible sidebar (drag to resize, or click to hide/show) with one row per r
 - **Task count badge** — number of tasks linked to the requirement group
 - **Verification status** — unverified, verified, or failing — based on a loaded JUnit or JSON test report
 - Click a row to filter the task graph to that requirement's tasks; double-click (or Ctrl+Enter) to jump to the requirement in the editor
-
-### Live AI Agent Log
-A collapsible terminal-style panel pinned to the bottom of the left column. Shows the most recent file-system activity events scoped to the active spec, colour-coded by event type. Supports CLEAR and PAUSE controls. When collapsed, previews the latest log line in the header bar.
 
 ### Snapshot History
 SpecLens automatically saves a snapshot every time something meaningful changes (task states, verification status). The History surface (opened via the `SpecLens: View History` command) lets you:
@@ -137,7 +134,7 @@ SpecLens **never runs tests** — it only reads an existing report file. If the 
 
 ## Settings
 
-All settings are workspace-folder scoped. You can open them directly via:
+Most settings are workspace-folder scoped; `speclens.telemetry.enabled` is an application-level setting that applies across all workspaces. You can open them directly via:
 - **Command Palette** → `SpecLens: Open Settings`
 - The **⚙** button in the dashboard header
 
@@ -148,6 +145,7 @@ All settings are workspace-folder scoped. You can open them directly via:
 | `speclens.retention.maxDays` | `number` | `30` | Maximum days to retain snapshots. Range: 1–3650. |
 | `speclens.retention.maxSizeMB` | `number` | `25` | Maximum snapshot store size in MB. Range: 1–1024. |
 | `speclens.candidateLinks.enabled` | `boolean` | `true` | When enabled, SpecLens infers file-to-task links by name and path similarity. Disable if you only want explicitly declared links. |
+| `speclens.telemetry.enabled` | `boolean` | `true` | When enabled, SpecLens sends anonymous usage telemetry for 3 event types (dashboard opened, history opened, spec switched) to understand feature usage. No personal information, code, file contents, or paths are ever collected. Set to `false` to disable. |
 | `speclens.frameworks` | `object` | `{}` | Per-folder map to override framework detection. Keys are workspace folder URIs; values are `"auto"`, `"kiro-spec"`, `"aidlc"`, `"openspec"`, or `"github-speckit"`. Folders absent from the map use `"auto"` (presence-based detection). |
 
 ### Framework override example
@@ -171,7 +169,9 @@ Folders not listed in the map are auto-detected from their directory structure.
 
 ## Privacy
 
-SpecLens is entirely local. It reads files from your workspace, writes snapshots to VS Code's extension global storage on your machine, and makes no network requests. No telemetry, no sync, no external services.
+SpecLens is local-first. It reads files from your workspace and writes snapshots to VS Code's extension global storage on your machine — no spec content, code, file contents, or file paths ever leave your machine, and there is no sync or external service for your data.
+
+SpecLens does send minimal, anonymous usage telemetry: a fire-and-forget event for only 3 actions (opening the dashboard, opening history, switching the active spec). Disable it anytime via the `speclens.telemetry.enabled` setting.
 
 ---
 
